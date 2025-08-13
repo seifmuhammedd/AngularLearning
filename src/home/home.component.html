@@ -1,0 +1,56 @@
+<section class="my-5">
+    <div class="container">
+        <button class="btn btn-primary px-3 py-2 my-4" (click)="navigateTOGallery()">Go To Gallery</button>
+        <div class="row g-3">
+            @for (product of products; track product.id) {
+            <div class="col-md-4">
+                <div class="card bordr border-secondary border-3 rounded-2">
+                    <img [src]="product.imgSrc" class="card-img-top w-100" [alt]="product.title">
+                    <div class="card-body">
+                        <h3 class="card-title">{{product.name}}</h3>
+                        <p class="card-text lead">{{product.title}}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span>{{product.price | currency:"USD"}}</span>
+                            <span class="badge bg-primary">{{product.category | uppercase}}</span>
+                        </div>
+                        @if(product.onSale){
+                            <span class="sale badge bg-success rounded-3 px-3 py-3">{{"Sale" |lowercase}}</span>
+                        }@else {
+                            <span class="sale badge bg-danger rounded-3 px-3 py-3">{{"No Sale" | lowercase}}</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            }@empty {
+                <h1 class="text-danger text-center">No Products Avilable</h1>
+            }
+        </div>
+    </div>
+</section>
+<section class="border border-5 p-5">
+    <h2 #x>Recommended Products:</h2>
+    <div class="container">
+        <!-- 
+        1-on
+            - idle 
+            - interaction
+            - hover
+            - timer
+            - immediate
+            - viewport
+
+        2-when
+            
+        -->
+        @defer (on interaction(x)) {
+            <app-recommended-products></app-recommended-products>
+        }@placeholder {
+            <h1>this is my component</h1>
+        }
+        @loading(minimum 2s) {
+            <h1>Loading...</h1>
+        }@error {
+            <h1>Error 404</h1>
+        }
+    </div>
+</section>
