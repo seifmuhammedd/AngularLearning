@@ -8,6 +8,7 @@ import { GalleryComponent } from '../gallery/gallery.component';
 import { Demo1Component } from '../demo1/demo1.component';
 import { Demo2Component } from '../demo2/demo2.component';
 import { Demo3Component } from '../demo3/demo3.component';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: "full"},
@@ -15,6 +16,7 @@ export const routes: Routes = [
     {path:"shop", component: ShopComponent, title: "Shop"},
     {path:"contact-us", component: ContactUsComponent, title: "Contact Us"},
     {path:"cart", component: CartComponent, title: "Cart"},
+    {path:"product-details/:p_id", component: ProductDetailsComponent, title: "Product Details"},
     {path:"gallery", component: GalleryComponent, title: "Gallery", children: [
         {path: "", redirectTo: "demo1", pathMatch: "full"},
         {path:"demo1", component: Demo1Component, title: "demo1"},
